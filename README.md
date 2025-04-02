@@ -8,5 +8,5 @@
 - Config Root = UniHaven
 - Project Settings = files under UniHaven
 - App root: Accommodation
-- App settings:
+- Key files: models.py, views.py, serializers.py, urls.py
 - Manage Tool = manage.py
