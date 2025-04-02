@@ -10,7 +10,7 @@ class Accommodation(models.Model):
     ]
 
     # Existing fields
-    accommodation_id = models.CharField(max_length=50, primary_key=True)
+    #accommodation_id = models.CharField(max_length=50, primary_key=True)
     location = models.CharField(max_length=200)
     rental_price = models.DecimalField(max_digits=10, decimal_places=2)
     rental_period = models.CharField(max_length=7, choices=RENTAL_PERIOD_CHOICES, default='monthly')
@@ -18,7 +18,7 @@ class Accommodation(models.Model):
     number_of_bedrooms = models.IntegerField()
     distance_from_campus = models.DecimalField(max_digits=10, decimal_places=2)
     availability_status = models.BooleanField(default=True)
-    uploaded_date = models.DateTimeField(auto_add_now=True)
+    uploaded_date = models.DateTimeField(auto_now_add=True)
     
     
     def __str__(self):
