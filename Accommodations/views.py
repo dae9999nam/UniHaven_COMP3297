@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework import generics, status
+from rest_framework import generics, status, viewsets
 from .models import Accommodation
 from .serializers import AccommodationSerializer
 from rest_framework.views import APIView
@@ -15,6 +15,10 @@ class ModifyAccommodation(generics.RetrieveUpdateDestroyAPIView): # To update an
     serializer_class = AccommodationSerializer
     lookup_field = "pk"
 
+#View Accommodation Item
+class ViewAccommodation(generics.ListAPIView):
+    queryset = Accommodation.objects.all()
+    serializer_class = AccommodationSerializer
 
 class SearchAccommodation(APIView):
     def get(self, request, format=None):
