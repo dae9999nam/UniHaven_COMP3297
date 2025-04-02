@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework import generics, status, viewsets
+from rest_framework import generics, status, viewsets, mixins
 from .models import Accommodation
 from .serializers import AccommodationSerializer
 from rest_framework.views import APIView
@@ -23,7 +23,7 @@ class ViewAccommodation(generics.ListAPIView):
 class SearchAccommodation(APIView):
     def get(self, request, format=None):
         #Get the name of building from the query parameter default as empty string 
-        name = request.query_params.get("Building Name", "")
+        name = request.query_params.get("name", None)
         if name:
             #Filter the queryset based on the accommodation name
             accommodation = Accommodation.objects.filter(name_icontains=name)

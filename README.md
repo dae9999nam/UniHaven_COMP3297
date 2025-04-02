@@ -7,6 +7,6 @@
 - Project Root = SourceCode
 - Config Root = UniHaven
 - Project Settings = files under UniHaven
-- App root
-- App settings
+- App root: Accommodation
+- App settings:
 - Manage Tool = manage.py
