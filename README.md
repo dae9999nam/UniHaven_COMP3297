@@ -15,12 +15,10 @@ djangorestframework
     ├── UniHaven # Config Root
     ├── Accommodation #App Folder
     └── README.md
-
-                                App folders key elements
-                                ├── models.py
-                                ├── views.py
-                                ├── serializers.py
-                                └── urls.py
+                        ├── models.py
+                        ├── views.py
+                        ├── serializers.py
+                        └── urls.py
 
 - Project Root = SourceCode
 - Config Root = UniHaven
