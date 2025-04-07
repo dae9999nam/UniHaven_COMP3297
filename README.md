@@ -11,23 +11,23 @@ djangorestframework
 
 ## File Structure
 
-### SourceCode #Project Root
+#### SourceCode #Project Root
 
-### ├── UniHaven # Config Root
+#### ├── UniHaven # Config Root
 
-### ├── Accommodation #App Folder
+#### ├── Accommodation #App Folder
 
-### └── README.md
+#### └── README.md
 
-### App folders key elements
+#### App folders key elements
 
-### ├── models.py
+#### ├── models.py
 
-### ├── views.py
+#### ├── views.py
 
-### ├── serializers.py
+#### ├── serializers.py
 
-### └── urls.py
+#### └── urls.py
 
 - Project Root = SourceCode
 - Config Root = UniHaven
