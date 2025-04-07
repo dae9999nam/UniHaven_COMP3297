@@ -19,15 +19,11 @@ djangorestframework
 
 #### └── README.md
 
-#### App folders key elements
-
-#### ├── models.py
-
-#### ├── views.py
-
-#### ├── serializers.py
-
-#### └── urls.py
+                                App folders key elements
+                                ├── models.py
+                                ├── views.py
+                                ├── serializers.py
+                                └── urls.py
 
 - Project Root = SourceCode
 - Config Root = UniHaven
