@@ -14,8 +14,7 @@ djangorestframework
     SourceCode #Project Root
     ├── UniHaven # Config Root
     ├── Accommodation #App Folder
-    └── README.md
-                        ├── models.py
+    └── README.md       ├── models.py
                         ├── views.py
                         ├── serializers.py
                         └── urls.py
