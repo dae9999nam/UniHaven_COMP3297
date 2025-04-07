@@ -9,6 +9,7 @@ from rest_framework.response import Response
 class CreateAccommodationList(generics.ListCreateAPIView):
     queryset = Accommodation.objects.all() #import all the dataset
     serializer_class = AccommodationSerializer
+    
 #Modify and Delete Accomodation Items
 class ModifyAccommodation(generics.RetrieveUpdateDestroyAPIView): # To update and delete Accommodation item
     queryset = Accommodation.objects.all()
