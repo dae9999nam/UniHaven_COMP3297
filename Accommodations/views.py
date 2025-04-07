@@ -26,7 +26,7 @@ class SearchAccommodation(APIView):
         name = request.query_params.get("name", None)
         if name:
             #Filter the queryset based on the accommodation name
-            accommodation = Accommodation.objects.filter(name_icontains=name)
+            accommodation = Accommodation.objects.filter(name__icontains=name)
         else:
             #If no building name is provided, return all accommodation items
             accommodation = Accommodation.objects.all()

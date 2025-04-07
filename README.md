@@ -34,3 +34,6 @@ App folders key elements
 1. `python3 -m pipenv install Django~=5.1` to install Django
 2. `pip install djangorestframework` to install Django REST framework
 3. `python3 -m pipenv shell` to run virtual environment
+4. `python3 manage.py makemigrations`
+5. `python3 manage.py migrate`
+6. `python3 manage.py runserver` to run server
