@@ -33,3 +33,14 @@ class SearchAccommodation(APIView):
             accommodation = Accommodation.objects.all()
         serializer = AccommodationSerializer(accommodation, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
+    
+# We want to calculate distance for one specific accommodation 
+# Choose which HKU campus or premises to measure distance
+'''class CalculateDistance(APIView):
+    query = Accommodation.objects.filter(id__icontains=accommodation_id)
+    long = query.longitude
+    lat = query.latitude
+    # Which compus object to choose
+    # Calculate distance
+    # Show the result
+    serializer_class = AccommodationSerializer'''
