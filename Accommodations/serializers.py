@@ -7,6 +7,7 @@ class AccommodationSerializer(serializers.ModelSerializer):
         fields = [ "accommodation_id", 
                   "name", 
                   "address", 
+                  "type",
                   "rental_price", 
                   "rental_period", 
                   "number_of_beds",

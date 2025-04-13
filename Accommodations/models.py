@@ -34,12 +34,15 @@ class Accommodation(models.Model):
         ('weekly', 'Weekly'),
         ('daily', 'Daily'),
     ]
+    
 
     # Existing fields
     accommodation_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200, default="empty")
     address = models.CharField(max_length=200)
+    type = models.CharField(max_length=100) #accommodation type
     rental_price = models.DecimalField(max_digits=10, decimal_places=2)
+    #rental period - available start date?
     rental_period = models.CharField(max_length=7, choices=RENTAL_PERIOD_CHOICES, default='monthly')
     number_of_beds = models.IntegerField()
     number_of_bedrooms = models.IntegerField()
