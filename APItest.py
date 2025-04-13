@@ -32,6 +32,14 @@ import xml.etree.ElementTree as ET
 # Define the API endpoint and parameters
 url = "https://www.als.gov.hk/lookup"
 params = {"q": "KING'S COLLEGE OLD BOYS' ASSOCIATION PRIMARY SCHOOL"}
+#url params
+''' "q": "KING'S COLLEGE OLD BOYS' ASSOCIATION PRIMARY SCHOOL", # input address element information (mandatory; URL-encoded(percent-encoded)); 
+        "n": 1, #range in 1-200, default=200
+        "t": 35, # tolerance on returned record scores (optional; range: 0-80; default: 35);
+        "b": 0,# enable/disable basic searching mode, default disabled (optional; range: 0 or 1; default: 0). '''
+
+#GeoAddress Lookup Service
+ga_url = "https://www.als.gov.hk/galookup?ga=<input GeoAddress>"
 
 # Make the GET request
 response = requests.get(url, params=params)
