@@ -1,6 +1,8 @@
 from django.db import models
 import requests
 import xml.etree.ElementTree as ET
+import math
+from enum import Enum
 
 def get_coordinates(address):
     """
@@ -41,7 +43,32 @@ def get_coordinates(address):
             return None, None, None
     return None, None, None
 
+def equirectangular_distance(lat1, long1, lat2, long2):
+    """
+    Calculates the distance between two points (in decimal degrees)
+    using the equirectangular approximation.
+    Returns the distance in meters.
+    """
+    # Convert degrees to radians
+    lat1_rad = math.radians(lat1)
+    lat2_rad = math.radians(lat2)
+    lon1_rad = math.radians(long1)
+    lon2_rad = math.radians(long2)
+    
+    # Compute differences in radians
+    delta_lon = lon2_rad - lon1_rad
+    delta_lat = lat2_rad - lat1_rad
+
+    # Adjust the longitude difference by the cosine of the average latitude
+    x = delta_lon * math.cos((lat1_rad + lat2_rad) / 2)
+    y = delta_lat
+    
+    R = 6371000
+    distance = math.sqrt(x * x + y * y) * R
+    return distance
+
 class Accommodation(models.Model):
+    
     RENTAL_PERIOD_CHOICES = [
         ('monthly', 'Monthly'),
         ('weekly', 'Weekly'),
@@ -52,7 +79,7 @@ class Accommodation(models.Model):
     accommodation_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200, default="empty")
     address = models.CharField(max_length=200)
-    type = models.CharField(max_length=100, default="") #accommodation type
+    type = models.CharField(max_length=100, default="") #accommodation type added
     rental_price = models.DecimalField(max_digits=10, decimal_places=2)
     rental_period = models.CharField(max_length=7, choices=RENTAL_PERIOD_CHOICES, default="monthly")
     number_of_beds = models.IntegerField()
