@@ -17,5 +17,3 @@ class AccommodationSerializer(serializers.ModelSerializer):
                   "GeoAddress",
                   "availability_status", 
                   "uploaded_date"]
-        # id not automatically implemented ?
-        #distance from HKU is changed to longitude and latitude of the building

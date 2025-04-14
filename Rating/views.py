@@ -1,3 +1,7 @@
-from django.shortcuts import render
+from rest_framework import viewsets
+from .models import Rating
+from .serializers import RatingSerializer
 
-# Create your views here.
+class RatingViewSet(viewsets.ModelViewSet):
+    queryset = Rating.objects.all().order_by('-uploaded_date')
+    serializer_class = RatingSerializer
