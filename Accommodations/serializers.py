@@ -13,7 +13,8 @@ class AccommodationSerializer(serializers.ModelSerializer):
                   "number_of_beds",
                   "number_of_bedrooms",
                   "longitude", 
-                  "latitude", 
+                  "latitude",
+                  "GeoAddress",
                   "availability_status", 
                   "uploaded_date"]
         # id not automatically implemented ?

@@ -41,6 +41,8 @@ class SearchAccommodation(APIView):
     long = query.longitude
     lat = query.latitude
     # Which compus object to choose
-    # Calculate distance
+    # Calculate distance - since distances are small, there is no need to calculate them as great-circle distances; line of sight distances are sufficient
+    equirectangular projection
     # Show the result
     serializer_class = AccommodationSerializer'''
+

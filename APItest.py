@@ -39,7 +39,8 @@ params = {"q": "KING'S COLLEGE OLD BOYS' ASSOCIATION PRIMARY SCHOOL"}
         "b": 0,# enable/disable basic searching mode, default disabled (optional; range: 0 or 1; default: 0). '''
 
 #GeoAddress Lookup Service
-ga_url = "https://www.als.gov.hk/galookup?ga=<input GeoAddress>"
+ga_url = "https://www.als.gov.hk/galookup?"
+params_for_ga = {"ga":""}
 
 # Make the GET request
 response = requests.get(url, params=params)
@@ -47,7 +48,6 @@ response = requests.get(url, params=params)
 if response.status_code == 200:
     # Print out the raw response text for debugging
     print("Raw response:", response.text)
-    
     try:
         # Parse the XML response
         root = ET.fromstring(response.content)
@@ -57,13 +57,14 @@ if response.status_code == 200:
         eng_building = root.find(".//EngPremisesAddress/BuildingName")
         if eng_building is not None:
             print("English Building Name:", eng_building.text)
-        
         # If you also want to extract latitude and longitude from GeospatialInformation:
         latitude_el = root.find(".//GeospatialInformation/Latitude")
         longitude_el = root.find(".//GeospatialInformation/Longitude")
-        if latitude_el is not None and longitude_el is not None:
+        GeoAddress_el = root.find(".//GeoAddress")
+        if latitude_el is not None and longitude_el is not None and GeoAddress_el is not None:
             print("Latitude:", latitude_el.text)
             print("Longitude:", longitude_el.text)
+            print("GeoAddress:", GeoAddress_el.text)
             
     except ET.ParseError as e:
         print("XML parse error:", e)
