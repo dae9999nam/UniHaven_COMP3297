@@ -115,8 +115,8 @@ class Accommodation(models.Model):
 
 class HKU_campus_premises(Enum):
      # The enum value tuple is (Display Name, latitude, longitude)
-    Main_Campus = ("Main Campus", 22.28405, 114.13784)
-    Sassoon = ("Sasson Road Campus", 22.2675, 114.12881)
-    Swire = ("Swire Institute of Marine Science", 22.20805, 114.26021)
-    Kadoorie_Centre = ("Kadoorie Centre", 22.43022, 114.11429)
-    Dentistry = ("Faculty of Dentistry", 22.28649, 114.14426)
+    MAIN_CAMPUS = ("Main Campus", 22.28405, 114.13784)
+    SASSON = ("Sasson Road Campus", 22.2675, 114.12881)
+    SWIRE = ("Swire Institute of Marine Science", 22.20805, 114.26021)
+    KADOORIE = ("Kadoorie Centre", 22.43022, 114.11429)
+    DENTISTRY = ("Faculty of Dentistry", 22.28649, 114.14426)
