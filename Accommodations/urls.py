@@ -7,6 +7,6 @@ urlpatterns = [
     path("Accommodations/create", views.CreateAccommodationList.as_view(), name="Create"),
     path("Accommodations/<int:pk>", views.ModifyAccommodation.as_view(), name="Update"),
     path("Accommodations/search/", views.SearchAccommodation.as_view(),name="Search"),
-    path("Accommodation/<int:pk>/distance/", views.AccommodationDistance.as_view(), name="distnace"),
+    path("Accommodations/<int:pk>/distance/", views.AccommodationDistance.as_view(), name="distance"),
 
 ]
