@@ -12,7 +12,13 @@ def get_coordinates(address):
     """
     # For a free-text GET request, set the parameter 'q' to the address.
     # Only take address to improve accuracy, no building nanme included
-    params = {"q": address}
+    params = {"q": address, "n":1}
+    #url params
+    """ "q": "KING'S COLLEGE OLD BOYS' ASSOCIATION PRIMARY SCHOOL", # input address element information (mandatory; URL-encoded(percent-encoded)); 
+        "n": 1, #range in 1-200, default=200, based on the assumption thaat the first result provided by API will be for the correct location
+        "t" - # tolerance on returned record scores (optional; range: 0-80; default: 35);
+        "b" - # enable/disable basic searching mode, default disabled (optional; range: 0 or 1; default: 0). 
+    """    
     url = "https://www.als.gov.hk/lookup"
     try:
         response = requests.get(url, params=params, timeout=10)
@@ -56,7 +62,7 @@ class Accommodation(models.Model):
     longitude = models.FloatField(default=0.0)
     latitude = models.FloatField(default=0.0)
     # GeoAddress added
-    GeoAddress = models.CharField(default="")
+    GeoAddress = models.CharField(max_length=200, default="")
 
     availability_status = models.BooleanField(default=True)
     uploaded_date = models.DateTimeField(auto_now_add=True)
