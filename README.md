@@ -14,6 +14,8 @@ djangorestframework
     SourceCode #Project Root
     ├── UniHaven # Config Root
     ├── Accommodation #App Folder
+    ├── Reservation #App Folder
+    ├── Rating #App Folder
     └── README.md       ├── models.py
                         ├── views.py
                         ├── serializers.py
@@ -37,3 +39,8 @@ When there is update in database
 
 1. `python3 manage.py makemigrates`
 2. `python3 manage.py migrates`
+
+To create a Django project named "<projectname>" with an app called "<appname>"
+
+1. `django-admin startproject <projectname> . `
+2. `python3 manage.py startapp <appname>`
