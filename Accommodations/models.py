@@ -4,6 +4,7 @@ import xml.etree.ElementTree as ET
 import math
 from enum import Enum
 
+# Coordiates Extraction
 def get_coordinates(address):
     """
     Calls the AddressLookUp API using a free-text address query and returns:
@@ -43,6 +44,7 @@ def get_coordinates(address):
             return None, None, None
     return None, None, None
 
+# Distance Calculation
 def equirectangular_distance(lat1, long1, lat2, long2):
     """
     Calculates the distance between two points (in decimal degrees)
@@ -109,3 +111,12 @@ class Accommodation(models.Model):
                 self.GeoAddress = geo
         # Call the original save() method to save the instance.
         super().save(*args, **kwargs)
+
+
+class HKU_campus_premises(Enum):
+     # The enum value tuple is (Display Name, latitude, longitude)
+    Main_Campus = ("Main Campus", 22.28405, 114.13784)
+    Sassoon = ("Sasson Road Campus", 22.2675, 114.12881)
+    Swire = ("Swire Institute of Marine Science", 22.20805, 114.26021)
+    Kadoorie_Centre = ("Kadoorie Centre", 22.43022, 114.11429)
+    Dentistry = ("Faculty of Dentistry", 22.28649, 114.14426)
