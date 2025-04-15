@@ -1,7 +1,6 @@
-from rest_framework.routers import DefaultRouter
-from .views import RatingViewSet
+from django.urls import path
+from .views import AccommodationRatingDetail
 
-router = DefaultRouter()
-router.register(r'ratings', RatingViewSet, basename='rating')
-
-urlpatterns = router.urls
+urlpatterns = [
+    path('Accommodations/<int:accommodation>/rating/', AccommodationRatingDetail.as_view(), name='accommodation_rating'),
+]
