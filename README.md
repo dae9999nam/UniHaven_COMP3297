@@ -30,10 +30,15 @@ Django RESTframework
 
 ## Usage
 
+- Setting up Requirements
+
 1. `python3 -m pipenv install Django~=5.1` to install Django
 2. `pip install djangorestframework` to install Django REST framework
-3. `python3 -m pipenv shell` to run virtual environment
-4. `python3 manage.py runserver` to run server
+
+- Setting up Virtual Environment and Run Server
+
+1. `python3 -m pipenv shell` to run virtual environment
+2. `python3 manage.py runserver` to run server
 
 When there is update in database
 
