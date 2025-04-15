@@ -98,7 +98,7 @@ class Accommodation(models.Model):
     
     
     def __str__(self):
-        return self.uploaded_date
+        return f"{self.accommodation_id} {self.name}"
     
     def save(self, *args, **kwargs):
         # When the address is provided and coordinates are not set (or are set to the default 0.0),

@@ -4,4 +4,4 @@ from .models import Rating
 class RatingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Rating
-        fields = ["score", "comment"]
+        fields = '__all__'
