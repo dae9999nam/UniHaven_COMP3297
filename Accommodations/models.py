@@ -76,7 +76,10 @@ class Accommodation(models.Model):
         ('weekly', 'Weekly'),
         ('daily', 'Daily'),
     ]
-    
+    UNIVERSITY = [('HKU', 'The University of Hong Kong - HKU'), 
+                  ('HKUST', 'Hong Kong University of Science and Technology - HKUST'), 
+                  ('CUHK', 'The Chinese University of Hong Kong - CUHK')
+                  ]
     # Existing fields
     accommodation_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200, default="empty")
@@ -86,6 +89,8 @@ class Accommodation(models.Model):
     rental_period = models.CharField(max_length=7, choices=RENTAL_PERIOD_CHOICES, default="monthly")
     number_of_beds = models.IntegerField()
     number_of_bedrooms = models.IntegerField()
+    #managed by specialist from the following university
+    university = models.CharField(max_length=5, choices=UNIVERSITY, default='HKU')
 
     # logitude and latitude are obtained by Address Lookup Service API
     longitude = models.FloatField(default=0.0)

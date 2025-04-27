@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from rest_framework import generics, status
+from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework import generics, status, filters
 from .models import Accommodation, Campus_Premises
 from .models import equirectangular_distance # for Distance Calculation functions
 from .serializers import AccommodationSerializer
@@ -22,18 +22,48 @@ class ViewAccommodation(generics.ListAPIView):
     queryset = Accommodation.objects.all()
     serializer_class = AccommodationSerializer
 
-class SearchAccommodation(APIView):
-    def get(self, request, format=None):
-        #Get the name of building from the query parameter default as empty string 
-        name = request.query_params.get("name", None)
-        if name:
-            #Filter the queryset based on the accommodation name
-            accommodation = Accommodation.objects.filter(name__icontains=name)
-        else:
-            #If no building name is provided, return all accommodation items
-            accommodation = Accommodation.objects.all()
-        serializer = AccommodationSerializer(accommodation, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+class SearchAccommodation(generics.ListAPIView):
+    queryset         = Accommodation.objects.all()
+    serializer_class = AccommodationSerializer
+
+    filter_backends = [
+        DjangoFilterBackend, # Exact-match filters (?type= or ?availability)
+        filters.SearchFilter, # Sub-string Search (?search= <sub-string>)
+        filters.OrderingFilter, #ordering (?ordering)
+    ]
+    # allow exact-match filters on these fields
+    filterset_fields = [
+        'type',
+        'rental_period',
+        'number_of_beds',
+        'number_of_bedrooms',
+        'availability_status',
+    ]
+    # allow ?search=<sub-string> to do icontains on name and address 
+    search_fields   = ['name', 'address',] # search for any string that includes the input = sub-string
+    #allow ordering for the following fields
+    ordering_fields = ['rental_price', 'uploaded_date', 'number_of_beds']
+    ordering        = ['-uploaded_date']
+
+    def list(self, request, *args, **kwargs):
+        # apply filtering/search/ordering
+        qs = self.filter_queryset(self.get_queryset())
+
+        # if nothing found, return custom message
+        if not qs.exists():
+            return Response(
+                {"message": "No such Accommodation"},
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+        # otherwise fall back to the normal ListAPIView behavior
+        page = self.paginate_queryset(qs)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(qs, many=True)
+        return Response(serializer.data)
     
 # We want to calculate distance for one specific accommodation 
 # Choose which HKU campus or premises to measure distance

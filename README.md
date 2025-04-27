@@ -38,7 +38,9 @@ Django RESTframework
 - Setting up Virtual Environment and Run Server
 
 1. `python3 -m pipenv shell` to run virtual environment
+   - `exit` to exit the shell
 2. `python3 manage.py runserver` to run server
+   - Control-C to stop the server
 
 When there is update in database
 
