@@ -113,10 +113,12 @@ class Accommodation(models.Model):
         super().save(*args, **kwargs)
 
 
-class HKU_campus_premises(Enum):
+class Campus_Premises(Enum):
      # The enum value tuple is (Display Name, latitude, longitude)
-    MAIN_CAMPUS = ("Main Campus", 22.28405, 114.13784)
+    HKU_MAIN_CAMPUS = ("Main Campus", 22.28405, 114.13784)
     SASSON = ("Sasson Road Campus", 22.2675, 114.12881)
     SWIRE = ("Swire Institute of Marine Science", 22.20805, 114.26021)
     KADOORIE = ("Kadoorie Centre", 22.43022, 114.11429)
     DENTISTRY = ("Faculty of Dentistry", 22.28649, 114.14426)
+    HKUST_CAMPUS = ("HKUST Main Campus", 22.33584, 114.26355)
+    CUHK_CAMPUS = ("CUHK Main Campus", 22.41907, 114.20693)

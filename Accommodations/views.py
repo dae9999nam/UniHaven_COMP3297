@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from rest_framework import generics, status
-from .models import Accommodation, HKU_campus_premises
+from .models import Accommodation, Campus_Premises
 from .models import equirectangular_distance # for Distance Calculation functions
 from .serializers import AccommodationSerializer
 from rest_framework.views import APIView
@@ -68,9 +68,9 @@ class AccommodationDistance(APIView):
         # Validate and get the target destination from the enum.
         # We assume that enum keys are uppercase.
         try:
-            destination = HKU_campus_premises[destination_choice.upper()]
+            destination = Campus_Premises[destination_choice.upper()]
         except KeyError:
-            valid_destinations = [d.name for d in HKU_campus_premises]
+            valid_destinations = [d.name for d in Campus_Premises]
             return Response(
                 {"error": f"Invalid destination. Valid options are: {', '.join(valid_destinations)}."},
                 status=status.HTTP_400_BAD_REQUEST
