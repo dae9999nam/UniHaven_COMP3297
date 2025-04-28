@@ -3,6 +3,7 @@ import requests
 import xml.etree.ElementTree as ET
 import math
 from enum import Enum
+from authentication.models import University
 
 # Coordiates Extraction
 def get_coordinates(address):
@@ -90,8 +91,12 @@ class Accommodation(models.Model):
     number_of_beds = models.IntegerField()
     number_of_bedrooms = models.IntegerField()
     #managed by specialist from the following university
-    university = models.CharField(max_length=5, choices=UNIVERSITY, default='HKU')
-
+    #university = models.CharField(max_length=5, choices=UNIVERSITY, default='HKU')
+    universities = models.ManyToManyField(
+        University,
+        choices=University.choices,
+        related_name='accommodations'
+    )
     # logitude and latitude are obtained by Address Lookup Service API
     longitude = models.FloatField(default=0.0)
     latitude = models.FloatField(default=0.0)

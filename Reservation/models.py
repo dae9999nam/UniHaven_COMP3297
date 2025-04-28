@@ -11,14 +11,16 @@ class Reservation(models.Model):
     ]
 
     # Existing fields
+    #Primary key
     reservation_id = models.AutoField(primary_key=True)
-    accommodation_id = models.ForeignKey(Accommodation , on_delete=models.CASCADE) 
+    #Link to the accommodation being booked
+    accommodation = models.ForeignKey(Accommodation , on_delete=models.CASCADE) 
+    #Whos making the reservation
     contact = models.CharField(max_length=50, default="empty")
     start_date = models.DateField()
     end_date = models.DateField()
     created_time = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=10, choices=Reservation_status_choices, default='pending')
 
-    
     # def __str__(self):
     #     return self.created_time

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Reservation Cancellation</title>
+  </head>
+
+  <body>
+    <p>Hello {{ user.first_name }},</p>
+
+    <p>
+      Your reservation (ID: {{ reservation.id }}) has been successfully
+      cancelled.
+    </p>
+
+    <p>Details of your cancelled reservation:</p>
+    <ul>
+      <li>Accommodation: {{ reservation.accommodation_id.name }}</li>
+      <li>Check-in: {{ reservation.check_in_date }}</li>
+      <li>Check-out: {{ reservation.check_out_date }}</li>
+    </ul>
+
+    <p>
+      If you didn't request this cancellation, please contact our support team
+      immediately.
+    </p>
+
+    <p>
+      Best regards,<br />
+      The Accommodation Team
+    </p>
+  </body>
+</html>

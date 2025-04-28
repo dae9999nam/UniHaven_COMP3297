@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Reservation Confirmation</title>
+  </head>
+
+  <body>
+    <p>Hello XXX,</p>
+
+    <p>
+      Your reservation has been successfully created. Here are your details:
+    </p>
+
+    <h3>Reservation Summary</h3>
+    <ul>
+      <li><strong>Reservation ID:</strong> {{ reservation.id }}</li>
+      <li>
+        <strong>Accommodation:</strong> {{ reservation.accommodation_id.name }}
+      </li>
+      <li><strong>Check-in Date:</strong> {{ reservation.start_date }}</li>
+      <li><strong>Check-out Date:</strong> {{ reservation.end_date }}</li>
+      <li><strong>Status:</strong> {{ reservation.status }}</li>
+    </ul>
+
+    <p>
+      You can view or manage your reservation at [insert your website link
+      here].
+    </p>
+
+    <p>Thank you for choosing us!</p>
+
+    <p>
+      Best regards,<br />
+      The Accommodation Team
+    </p>
+  </body>
+</html>
