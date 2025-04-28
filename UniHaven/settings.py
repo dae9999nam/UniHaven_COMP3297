@@ -37,10 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "Accommodations",
     "rest_framework",
-    "Rating",
     'django_filters',
+    "Accommodations",
+    "Rating",
+    "Reservation",
+    
 ]
 
 REST_FRAMEWORK = {
