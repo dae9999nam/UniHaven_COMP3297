@@ -62,11 +62,11 @@ To create a Django project named "<projectname>" with an app called "<appname>"
 
 To get authenticated
 
-1. Run the shell `python3 manage.py shell`
-2. Make University instances - HKU, HKUST, CUHK in this project scope
+1.  Run the shell `python3 manage.py shell`
+2.  Make University instances - HKU, HKUST, CUHK in this project scope
 
--       `hku   = University.objects.create(code='HKU',   name='The University of Hong Kong', specialist_email='')`
--       `hkust = University.objects.create(code='HKUST', name='Hong Kong University of Science and Technology', specialist_email='')`
--       `cuhk  = University.objects.create(code='CUHK',  name='The Chinese University of Hong Kong', specialist_email='')`
+        `hku   = University.objects.create(code='HKU',   name='The University of Hong Kong', specialist_email='')`
+        `hkust = University.objects.create(code='HKUST', name='Hong Kong University of Science and Technology', specialist_email='')`
+        `cuhk  = University.objects.create(code='CUHK',  name='The Chinese University of Hong Kong', specialist_email='')`
 
-  - Add specialist email address
+- Add specialist email address
