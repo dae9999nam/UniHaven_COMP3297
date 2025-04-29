@@ -19,7 +19,7 @@ class Reservation(models.Model):
     contact = models.CharField(max_length=50, default="empty")
     start_date = models.DateField()
     end_date = models.DateField()
-    created_time = models.DateTimeField(auto_now_add=True)
+    updated_time = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=10, choices=Reservation_status_choices, default='pending')
 
     # def __str__(self):

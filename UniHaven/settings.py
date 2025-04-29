@@ -39,9 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "rest_framework",
     'django_filters',
+    'rest_framework.authtoken',
     "Accommodations",
     "Rating",
     "Reservation",
+    "authentication",
     
 ]
 
@@ -139,3 +141,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# send_mail() calls now just print to the console instead of real SMTP
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
