@@ -60,13 +60,15 @@ To create a Django project named "<projectname>" with an app called "<appname>"
 1. `django-admin startproject <projectname> . `
 2. `python3 manage.py startapp <appname>`
 
-To get authenticated
+To get authenticated - all work should be done in the shell
 
 1.  Run the shell `python3 manage.py shell`
 2.  Make University instances - HKU, HKUST, CUHK in this project scope
-
-        `hku   = University.objects.create(code='HKU',   name='The University of Hong Kong', specialist_email='')`
-        `hkust = University.objects.create(code='HKUST', name='Hong Kong University of Science and Technology', specialist_email='')`
-        `cuhk  = University.objects.create(code='CUHK',  name='The Chinese University of Hong Kong', specialist_email='')`
+    `from authentication.models import University, ServiceAccount`
+    `from rest_framework.authtoken.models import Token`
+    `from Accommodations.models import Accommodation`
+    `hku   = University.objects.create(code='HKU',   name='The University of Hong Kong', specialist_email='')`
+    `hkust = University.objects.create(code='HKUST', name='Hong Kong University of Science and Technology', specialist_email='')`
+    `cuhk  = University.objects.create(code='CUHK',  name='The Chinese University of Hong Kong', specialist_email='')`
 
 - Add specialist email address
