@@ -2,9 +2,9 @@ from django.db import models
 from rest_framework.authtoken.models import Token
 
 class University(models.Model):
-    code = models.CharField(max_length=5, unique=True)   # e.g. 'HKU'
-    name = models.CharField(max_length=100)              # e.g. 'The University of Hong Kong'
-    specialist_email = models.EmailField(default="") # email address for specialist to get email notification
+    code            = models.CharField(max_length=5, unique=True)   # e.g. 'HKU'
+    name            = models.CharField(max_length=100)              # e.g. 'The University of Hong Kong'
+    specialist_email = models.EmailField(default="", blank=True)     # shared inbox
 
     class Meta:
         verbose_name = 'University'
@@ -16,16 +16,16 @@ class University(models.Model):
 
 class ServiceAccount(models.Model):
     """
-    Represents a system account (e.g., CEDARS-HKU, HKUST portal) that calls UniHaven.
-    Each service account is tied to one University and has one DRF Token for authentication.
+    A service-to-service credential: e.g. CEDARS-HKU ↔ UniHaven.
+    Carries which University is calling.
     """
-    name = models.CharField(max_length=100, unique=True)
-    university = models.ForeignKey(
+    name        = models.CharField(max_length=100, unique=True)  
+    university  = models.ForeignKey(
         University,
         on_delete=models.CASCADE,
         related_name='service_accounts'
     )
-    token = models.OneToOneField(
+    token       = models.OneToOneField(
         Token,
         on_delete=models.CASCADE,
         related_name='service_account'

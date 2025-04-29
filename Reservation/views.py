@@ -1,15 +1,21 @@
 from django.shortcuts import get_object_or_404, redirect
 from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.authentication import SessionAuthentication
 from django.core.mail import send_mail
 from django.conf import settings
 
+from authentication.authentication import ServiceTokenAuthentication
 from .models import Reservation
 from .serializers import ReservationSerializer
 from Accommodations.serializers import AccommodationSerializer
 
-# only for user to create reservation
+# Create and list reservations
 class CreateReservation(generics.ListCreateAPIView):
-    serializer_class = ReservationSerializer
+    # Allow both session-login (for browsable API) and service-token auth
+    authentication_classes = [SessionAuthentication, ServiceTokenAuthentication]
+    permission_classes     = [IsAuthenticated]
+    serializer_class       = ReservationSerializer
 
     def get_queryset(self):
         return Reservation.objects.all()
@@ -48,10 +54,12 @@ class CreateReservation(generics.ListCreateAPIView):
                 print(f"Subject: {support_subject}")
                 print(support_message)
 
-# Both user and specialist can modify the reservation item
+# Update reservation
 class ModifyReservation(generics.RetrieveUpdateAPIView):
-    serializer_class = ReservationSerializer
-    lookup_field     = 'pk'
+    authentication_classes = [SessionAuthentication, ServiceTokenAuthentication]
+    permission_classes     = [IsAuthenticated]
+    serializer_class       = ReservationSerializer
+    lookup_field           = 'pk'
 
     def get_queryset(self):
         return Reservation.objects.all()
@@ -93,10 +101,12 @@ class ModifyReservation(generics.RetrieveUpdateAPIView):
     def patch(self, request, *args, **kwargs):
         return self.partial_update(request, *args, **kwargs)
 
-# Both user and specialist can cancel reservation item
+# Cancel reservation
 class CancelReservation(generics.RetrieveUpdateAPIView):
-    serializer_class = ReservationSerializer
-    lookup_field     = 'pk'
+    authentication_classes = [SessionAuthentication, ServiceTokenAuthentication]
+    permission_classes     = [IsAuthenticated]
+    serializer_class       = ReservationSerializer
+    lookup_field           = 'pk'
 
     def get_queryset(self):
         return Reservation.objects.all()
@@ -138,17 +148,21 @@ class CancelReservation(generics.RetrieveUpdateAPIView):
     def patch(self, request, *args, **kwargs):
         return self.partial_update(request, *args, **kwargs)
 
-# View All Reservation items for specialist to control
+# View all reservations
 class ViewReservationList(generics.ListAPIView):
-    serializer_class = ReservationSerializer
+    authentication_classes = [SessionAuthentication, ServiceTokenAuthentication]
+    permission_classes     = [IsAuthenticated]
+    serializer_class       = ReservationSerializer
 
     def get_queryset(self):
         return Reservation.objects.all()
 
-# View Detail for reserved accommodation item
+# View reserved accommodation detail
 class ViewReservedAccommodationDetail(generics.RetrieveAPIView):
-    serializer_class = AccommodationSerializer
-    lookup_url_kwarg = 'pk'
+    authentication_classes = [SessionAuthentication, ServiceTokenAuthentication]
+    permission_classes     = [IsAuthenticated]
+    serializer_class       = AccommodationSerializer
+    lookup_url_kwarg       = 'pk'
 
     def get_object(self):
         reservation = get_object_or_404(Reservation, pk=self.kwargs['pk'])
