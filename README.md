@@ -64,11 +64,17 @@ To get authenticated - all work should be done in the shell
 
 1.  Run the shell `python3 manage.py shell`
 2.  Make University instances - HKU, HKUST, CUHK in this project scope
-    `from authentication.models import University, ServiceAccount`
-    `from rest_framework.authtoken.models import Token`
-    `from Accommodations.models import Accommodation`
-    `hku   = University.objects.create(code='HKU',   name='The University of Hong Kong', specialist_email='')`
-    `hkust = University.objects.create(code='HKUST', name='Hong Kong University of Science and Technology', specialist_email='')`
-    `cuhk  = University.objects.create(code='CUHK',  name='The Chinese University of Hong Kong', specialist_email='')`
 
-- Add specialist email address
+        `from authentication.models import University, ServiceAccount`
+        `from rest_framework.authtoken.models import Token`
+        `from Accommodations.models import Accommodation`
+        `hku   = University.objects.create(code='HKU',   name='The University of Hong Kong', specialist_email='')`
+        `hkust = University.objects.create(code='HKUST', name='Hong Kong University of Science and Technology', specialist_email='')`
+        `cuhk  = University.objects.create(code='CUHK',  name='The Chinese University of Hong Kong', specialist_email='')`
+
+3.  Add specialist email address
+
+        `for svc_name, uni in [('cedars-hku', hku), ('cedars-hkust', hkust), ('cedars-cuhk', cuhk)]:
+            token = Token.objects.create()
+            sa = ServiceAccount.objects.create(name=svc_name, university=uni, token=token)
+            print(f"{svc_name} → token = {token.key}")`
