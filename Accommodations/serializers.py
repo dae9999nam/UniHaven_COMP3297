@@ -15,5 +15,6 @@ class AccommodationSerializer(serializers.ModelSerializer):
                   "longitude", 
                   "latitude",
                   "GeoAddress",
-                  "availability_status", 
+                  "availability_startdate",
+                  "availability_endUserdate", 
                   "uploaded_date"]

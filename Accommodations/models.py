@@ -4,6 +4,7 @@ import xml.etree.ElementTree as ET
 import math
 from enum import Enum
 from authentication.models import University
+from datetime import date
 
 # Coordiates Extraction
 def get_coordinates(address):
@@ -99,7 +100,8 @@ class Accommodation(models.Model):
     # GeoAddress added
     GeoAddress = models.CharField(max_length=200, default="")
 
-    availability_status = models.BooleanField(default=True)
+    availability_startdate=models.DateField(default=None)
+    availability_enddate=models.DateField(default=None)
     uploaded_date = models.DateTimeField(auto_now_add=True)
     
     
@@ -121,10 +123,12 @@ class Accommodation(models.Model):
 
 class Campus_Premises(Enum):
      # The enum value tuple is (Display Name, latitude, longitude)
-    HKU_MAIN_CAMPUS = ("Main Campus", 22.28405, 114.13784)
+    HKU_MAIN_CAMPUS = ("Main Campus", 22.11111, 114.11111)
     SASSON = ("Sasson Road Campus", 22.2675, 114.12881)
     SWIRE = ("Swire Institute of Marine Science", 22.20805, 114.26021)
     KADOORIE = ("Kadoorie Centre", 22.43022, 114.11429)
     DENTISTRY = ("Faculty of Dentistry", 22.28649, 114.14426)
     HKUST_CAMPUS = ("HKUST Main Campus", 22.33584, 114.26355)
     CUHK_CAMPUS = ("CUHK Main Campus", 22.41907, 114.20693)
+
+    
