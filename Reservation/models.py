@@ -5,8 +5,8 @@ from Accommodations.models import Accommodation
 class Reservation(models.Model):
 
     Reservation_status_choices = [
-        ('pending', 'Pending'),
-        ('confirmed', 'Confirmed'),
+        ('contract not signed', 'Contract Not Signed'),
+        ('contract not signed', 'Contract Signed'),
         ('cancelled', 'Cancelled'),
     ]
 
