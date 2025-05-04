@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404, redirect
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import SessionAuthentication
+from rest_framework.exceptions import ValidationError
 from django.core.mail import send_mail
 from django.conf import settings
 
@@ -21,6 +22,15 @@ class CreateReservation(generics.ListCreateAPIView):
         return Reservation.objects.all()
 
     def perform_create(self, serializer):
+        # grab the accommodation instance from the validated data
+        accommodation = serializer.validated_data['accommodation']
+
+        # if there is already a signed reservation for that accommodation, block creation
+        if Reservation.objects.filter(accommodation=accommodation, status='Contract Signed').exists():
+            raise ValidationError({
+                "detail": "Cannot create reservation: a signed contract already exists for this accommodation."
+            })
+
         reservation = serializer.save()
         print(f"[DEBUG] Created reservation: ID={reservation.reservation_id}, contact={reservation.contact}, accommodation={reservation.accommodation.name}")
 

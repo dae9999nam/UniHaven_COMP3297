@@ -6,7 +6,7 @@ class Reservation(models.Model):
 
     Reservation_status_choices = [
         ('contract not signed', 'Contract Not Signed'),
-        ('contract not signed', 'Contract Signed'),
+        ('contract signed', 'Contract Signed'),
         ('cancelled', 'Cancelled'),
     ]
 
@@ -20,7 +20,7 @@ class Reservation(models.Model):
     start_date = models.DateField()
     end_date = models.DateField()
     updated_time = models.DateTimeField(auto_now_add=True)
-    status = models.CharField(max_length=10, choices=Reservation_status_choices, default='pending')
+    status = models.CharField(max_length=30, choices=Reservation_status_choices, default='Contract Not Signed')
 
     # def __str__(self):
     #     return self.created_time
