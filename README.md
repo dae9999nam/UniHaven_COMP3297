@@ -101,16 +101,23 @@ To create a Django project named "<projectname>" with an app called "<appname>"
 
         User = get_user_model()
 
-2.  make the service user
+2.  make the service user, replace variables with <>
 
-        svc_user = User.objects.create_user(username='cedars-hku', email='<email address>', password='<password>')
+        svc_user = User.objects.create_user(username='<username>', email='<email address>', password='<password>')
 
 3.  create the token for that user
 
         token = Token.objects.create(user=svc_user)
         print("Token key is:", token.key)
 
-4.  link to your ServiceAccount
+4.  link to your ServiceAccount to university
 
         uni = University.objects.get(code='HKU')
-        ServiceAccount.objects.create(name='cedars-hku', university=uni, token=token)
+        ServiceAccount.objects.create(name='<account name>', university=uni, token=token)
+
+## Limitation
+
+- Current system needs to link reservation status for Rating
+- With the Authentication, user can get token to access Unihaven and will be asked to make a service account
+- User should make a service account as specified above (i.e. Dummy Account)
+- System should remember the user to save their accommodation contract records so that they can let users rate the accommodation where they have stayed
