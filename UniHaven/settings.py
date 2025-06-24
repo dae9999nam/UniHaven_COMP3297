@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "Rating",
     "Reservation",
     "authentication",
+    "drf-spectacular",
     
 ]
 
