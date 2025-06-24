@@ -1,12 +1,13 @@
 # UniHaven
 
-### This repository is to develop a web-service API in Agile development process to provide quick accommodation search service for undergraduates and post-graduates in the University of Hong Kong
+### This repository is to develop a web-service API in Agile development process to provide quick accommodation search service for undergraduates and post-graduates in the University of Hong Kong collaborating with CEDARS.
 
-## Latest Update Note - 2025/Apr/28th
+## Latest Update Note - 2025/Jun/24th
 
 - Authentication Implemented
 - Email Notification Implemented (printed on the console for both user and cedars-specialist, only the university defined in the accommodation item will get notification for the change in reservation)
 - Reservation Function Updated
+- API Documentation in yaml format with file name schema.yml Updated
 
 System usage has been updated - Baek Seunghyeon
 
