@@ -61,8 +61,19 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ],
+    'DEFAULT_SCHEMA_CLASS': 'drf-spectacular.openapi.AutoSchema',
 }
 
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'UNIHAVEN: Distance based Accommodation Search API',
+    'DESCRIPTION': 'API documentation for accommodation searching API, UNIHAVEN.'\
+        'You can manage accommodation items, reservation items, rating items here.'\
+        'use this training simulation. Use the base URL: ',
+    'VERSION': '1.0.0',
+    'SERVICE_INCLUDE_SCHEMA': False,
+    # OTHER SETTINGS
+
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

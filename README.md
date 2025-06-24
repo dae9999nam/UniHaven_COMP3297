@@ -1,6 +1,6 @@
 # UniHaven
 
-### This repository is to develop a web-service API in Agile development to provide quick accommodation search service for undergraduates and post-graduates in the University of Hong Kong
+### This repository is to develop a web-service API in Agile development process to provide quick accommodation search service for undergraduates and post-graduates in the University of Hong Kong
 
 ## Latest Update Note - 2025/Apr/28th
 
