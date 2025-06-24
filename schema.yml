@@ -1,0 +1,877 @@
+openapi: 3.0.3
+info:
+  title: 'UNIHAVEN: Distance based Accommodation Search API'
+  version: 1.0.0
+  description: 'API documentation for accommodation searching API, UNIHAVEN.You can
+    manage accommodation items, reservation items, rating items here.use this training
+    simulation. Use the base URL: '
+paths:
+  /Accommodations/:
+    get:
+      operationId: Accommodations_list
+      parameters:
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - Accommodations
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Accommodation'
+          description: ''
+  /Accommodations/{accommodation_id}/:
+    get:
+      operationId: Accommodations_retrieve
+      parameters:
+      - in: path
+        name: accommodation_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this accommodation.
+        required: true
+      tags:
+      - Accommodations
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Accommodation'
+          description: ''
+    put:
+      operationId: Accommodations_update
+      parameters:
+      - in: path
+        name: accommodation_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this accommodation.
+        required: true
+      tags:
+      - Accommodations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Accommodation'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Accommodation'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Accommodation'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Accommodation'
+          description: ''
+    patch:
+      operationId: Accommodations_partial_update
+      parameters:
+      - in: path
+        name: accommodation_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this accommodation.
+        required: true
+      tags:
+      - Accommodations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedAccommodation'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedAccommodation'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedAccommodation'
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Accommodation'
+          description: ''
+    delete:
+      operationId: Accommodations_destroy
+      parameters:
+      - in: path
+        name: accommodation_id
+        schema:
+          type: integer
+        description: A unique integer value identifying this accommodation.
+        required: true
+      tags:
+      - Accommodations
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /Accommodations/{id}/distance/:
+    get:
+      operationId: Accommodations_distance_retrieve
+      description: |-
+        This view calculates the distance between an existing Accommodation instance
+        (identified by its primary key) and a target destination selected from a predefined enum.
+
+        Query Parameters:
+          - destination: The target destination choice (i.e. "Main_Campus", "Sasson", "Swire", "Kadoorie_Centre", "Faculty of Dentistry")
+
+        URL Parameter:
+          - pk: The primary key of the Accommodation instance
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - Accommodations
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+  /Accommodations/{id}/rating/:
+    get:
+      operationId: Accommodations_rating_retrieve
+      description: |-
+        View, update, or delete the rating for a specified accommodation.
+        URL: /Accommodations/<int:pk>/rating/
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - Accommodations
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+    put:
+      operationId: Accommodations_rating_update
+      description: |-
+        View, update, or delete the rating for a specified accommodation.
+        URL: /Accommodations/<int:pk>/rating/
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - Accommodations
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+    patch:
+      operationId: Accommodations_rating_partial_update
+      description: |-
+        View, update, or delete the rating for a specified accommodation.
+        URL: /Accommodations/<int:pk>/rating/
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - Accommodations
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          description: No response body
+    delete:
+      operationId: Accommodations_rating_destroy
+      description: |-
+        View, update, or delete the rating for a specified accommodation.
+        URL: /Accommodations/<int:pk>/rating/
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - Accommodations
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '204':
+          description: No response body
+  /Accommodations/{id}/rating/create/:
+    post:
+      operationId: Accommodations_rating_create_create
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - Accommodations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Rating'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Rating'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Rating'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Rating'
+          description: ''
+  /Accommodations/create/:
+    get:
+      operationId: Accommodations_create_list
+      parameters:
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - Accommodations
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Accommodation'
+          description: ''
+    post:
+      operationId: Accommodations_create_create
+      tags:
+      - Accommodations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Accommodation'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Accommodation'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Accommodation'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Accommodation'
+          description: ''
+  /Accommodations/search/:
+    get:
+      operationId: Accommodations_search_list
+      parameters:
+      - in: query
+        name: number_of_bedrooms
+        schema:
+          type: integer
+      - in: query
+        name: number_of_beds
+        schema:
+          type: integer
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - in: query
+        name: rental_period
+        schema:
+          type: string
+          enum:
+          - daily
+          - monthly
+          - weekly
+        description: |-
+          * `monthly` - Monthly
+          * `weekly` - Weekly
+          * `daily` - Daily
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - in: query
+        name: type
+        schema:
+          type: string
+      tags:
+      - Accommodations
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Accommodation'
+          description: ''
+  /reservations/:
+    get:
+      operationId: reservations_list
+      parameters:
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - reservations
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Reservation'
+          description: ''
+  /reservations/{id}/accommodation:
+    get:
+      operationId: reservations_accommodation_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - reservations
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Accommodation'
+          description: ''
+  /reservations/cancel/{id}:
+    get:
+      operationId: reservations_cancel_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - reservations
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservation'
+          description: ''
+    put:
+      operationId: reservations_cancel_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - reservations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Reservation'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Reservation'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Reservation'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservation'
+          description: ''
+    patch:
+      operationId: reservations_cancel_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - reservations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedReservation'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedReservation'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedReservation'
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservation'
+          description: ''
+  /reservations/create:
+    get:
+      operationId: reservations_create_list
+      parameters:
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - reservations
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Reservation'
+          description: ''
+    post:
+      operationId: reservations_create_create
+      tags:
+      - reservations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Reservation'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Reservation'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Reservation'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservation'
+          description: ''
+  /reservations/modify/{id}:
+    get:
+      operationId: reservations_modify_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - reservations
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservation'
+          description: ''
+    put:
+      operationId: reservations_modify_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - reservations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Reservation'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Reservation'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Reservation'
+        required: true
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservation'
+          description: ''
+    patch:
+      operationId: reservations_modify_partial_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - reservations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedReservation'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedReservation'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedReservation'
+      security:
+      - cookieAuth: []
+      - tokenAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservation'
+          description: ''
+components:
+  schemas:
+    Accommodation:
+      type: object
+      properties:
+        accommodation_id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        address:
+          type: string
+          maxLength: 200
+        type:
+          type: string
+          maxLength: 100
+        rental_price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        rental_period:
+          $ref: '#/components/schemas/RentalPeriodEnum'
+        number_of_beds:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        number_of_bedrooms:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        longitude:
+          type: number
+          format: double
+        latitude:
+          type: number
+          format: double
+        GeoAddress:
+          type: string
+          maxLength: 200
+        availability_startdate:
+          type: string
+          format: date
+        availability_enddate:
+          type: string
+          format: date
+        uploaded_date:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+      - accommodation_id
+      - address
+      - number_of_bedrooms
+      - number_of_beds
+      - rental_price
+      - uploaded_date
+    PatchedAccommodation:
+      type: object
+      properties:
+        accommodation_id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          maxLength: 200
+        address:
+          type: string
+          maxLength: 200
+        type:
+          type: string
+          maxLength: 100
+        rental_price:
+          type: string
+          format: decimal
+          pattern: ^-?\d{0,8}(?:\.\d{0,2})?$
+        rental_period:
+          $ref: '#/components/schemas/RentalPeriodEnum'
+        number_of_beds:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        number_of_bedrooms:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: -9223372036854775808
+          format: int64
+        longitude:
+          type: number
+          format: double
+        latitude:
+          type: number
+          format: double
+        GeoAddress:
+          type: string
+          maxLength: 200
+        availability_startdate:
+          type: string
+          format: date
+        availability_enddate:
+          type: string
+          format: date
+        uploaded_date:
+          type: string
+          format: date-time
+          readOnly: true
+    PatchedReservation:
+      type: object
+      properties:
+        reservation_id:
+          type: integer
+          readOnly: true
+        contact:
+          type: string
+          maxLength: 50
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
+        updated_time:
+          type: string
+          format: date-time
+          readOnly: true
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+        accommodation:
+          type: integer
+    Rating:
+      type: object
+      properties:
+        rating_id:
+          type: integer
+          readOnly: true
+        score:
+          type: integer
+          maximum: 5
+          minimum: 0
+        comment:
+          type: string
+        uploaded_date:
+          type: string
+          format: date-time
+          readOnly: true
+        accommodation:
+          type: integer
+      required:
+      - accommodation
+      - rating_id
+      - score
+      - uploaded_date
+    RentalPeriodEnum:
+      enum:
+      - monthly
+      - weekly
+      - daily
+      type: string
+      description: |-
+        * `monthly` - Monthly
+        * `weekly` - Weekly
+        * `daily` - Daily
+    Reservation:
+      type: object
+      properties:
+        reservation_id:
+          type: integer
+          readOnly: true
+        contact:
+          type: string
+          maxLength: 50
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
+        updated_time:
+          type: string
+          format: date-time
+          readOnly: true
+        status:
+          $ref: '#/components/schemas/StatusEnum'
+        accommodation:
+          type: integer
+      required:
+      - accommodation
+      - end_date
+      - reservation_id
+      - start_date
+      - updated_time
+    StatusEnum:
+      enum:
+      - contract not signed
+      - contract signed
+      - cancelled
+      type: string
+      description: |-
+        * `contract not signed` - Contract Not Signed
+        * `contract signed` - Contract Signed
+        * `cancelled` - Cancelled
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
+    tokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: Token-based authentication with required prefix "Token"

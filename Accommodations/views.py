@@ -37,7 +37,7 @@ class SearchAccommodation(generics.ListAPIView):
         'rental_period',
         'number_of_beds',
         'number_of_bedrooms',
-        'availability_status',
+        
     ]
     # allow ?search=<sub-string> to do icontains on name and address 
     search_fields   = ['name', 'address',] # search for any string that includes the input = sub-string

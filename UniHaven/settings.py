@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     "Rating",
     "Reservation",
     "authentication",
-    "drf-spectacular",
+    "drf_spectacular",
     
 ]
 
@@ -61,7 +61,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ],
-    'DEFAULT_SCHEMA_CLASS': 'drf-spectacular.openapi.AutoSchema',
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
 SPECTACULAR_SETTINGS = {
